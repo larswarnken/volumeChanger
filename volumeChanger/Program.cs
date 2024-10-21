@@ -20,11 +20,16 @@ namespace volumeChanger
             // SerialCommunicator erstellen
             SerialCommunicator serialCommunicator = new SerialCommunicator("COM3", 9600);
 
+            // VolumeController erstellen
+            VolumeController volumeController = new VolumeController();
+
             // Form1 erstellen und den SerialCommunicator übergeben
             Form1 form = new Form1(serialCommunicator, cancellationTokenSource);
 
-            // Abonnieren des DataReceived-Events und Daten an die Form1 weiterleiten
+            // Abonnieren des DataReceived-Events und Daten an die Form1 und VolumeController weiterleiten
             serialCommunicator.DataReceived += form.UpdateLabel;
+            serialCommunicator.DataReceived += volumeController.ProcessVolumeData;
+
 
             // Starte die serielle Kommunikation in einem separaten Task
             Task.Run(() => StartSerialCommunication(serialCommunicator, cancellationTokenSource.Token))

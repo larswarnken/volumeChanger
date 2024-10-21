@@ -82,7 +82,7 @@ namespace volumeChanger
                 try
                 {
                     string incomingData = _serialPort.ReadLine(); // Read data as string
-                    Console.WriteLine(incomingData);
+                    //Console.WriteLine(incomingData);
 
                     // Trigger the DataReceived event so other classes can process the data
                     DataReceived?.Invoke(incomingData);
