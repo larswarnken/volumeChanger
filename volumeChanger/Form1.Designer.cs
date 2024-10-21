@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             progressBar1 = new ProgressBar();
+            button1 = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // progressBar1
@@ -38,19 +40,42 @@
             progressBar1.Size = new Size(28, 212);
             progressBar1.TabIndex = 0;
             // 
+            // button1
+            // 
+            button1.Location = new Point(438, 320);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(459, 147);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 2;
+            label1.Text = "label1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
+            Controls.Add(button1);
             Controls.Add(progressBar1);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private ProgressBar progressBar1;
+        private Button button1;
+        private Label label1;
     }
 }
