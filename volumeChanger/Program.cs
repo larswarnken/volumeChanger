@@ -34,18 +34,17 @@ namespace volumeChanger
 
             // Starte die serielle Kommunikation in einem separaten Task
             Task.Run(() => StartSerialCommunication(serialCommunicator, cancellationTokenSource.Token))
-    .ContinueWith(t =>
-    {
-        if (t.IsFaulted)
-        {
-            Console.WriteLine($"Task failed: {t.Exception}");
-        }
-        else
-        {
-            Console.WriteLine("Task completed successfully.");
-        }
-    });
-
+            .ContinueWith(t =>
+            {
+                if (t.IsFaulted)
+                {
+                    Console.WriteLine($"Task failed: {t.Exception}");
+                }
+                else
+                {
+                    Console.WriteLine("Task completed successfully.");
+                }
+            });
 
             // Start der GUI
             Application.Run(form);

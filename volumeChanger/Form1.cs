@@ -8,7 +8,7 @@ namespace volumeChanger
 {
     public partial class Form1 : Form
     {
-
+        // instances
         private SerialCommunicator _serialCommunicator;
         private CancellationTokenSource _cancellationTokenSource;
 
@@ -29,12 +29,14 @@ namespace volumeChanger
             _cancellationTokenSource = cancellationTokenSource;
         }
 
+        // Eventhandler für das PinValueChanged-Event des VolumeControllers
         public void volumeController_OnPinValueChanged(object sender, PinValueEventArgs e)
         {
             //volumeMeter1.Amplitude = e.PinValue;
             UpdatePanelHeight(200 - (e.PinValue * 2));
         }
 
+        // update the height of the panel
         public void UpdatePanelHeight(int newHeight)
         {
             if (panelVolWhite.InvokeRequired)
@@ -75,6 +77,7 @@ namespace volumeChanger
             base.OnFormClosed(e);
         }
 
+        // Button zum Öffnen des Form2
         private void buttonPrograms_Click(object sender, EventArgs e)
         {
 
@@ -89,9 +92,5 @@ namespace volumeChanger
             }
         }
 
-        private void panelVolWhite1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

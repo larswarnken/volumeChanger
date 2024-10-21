@@ -34,6 +34,7 @@ namespace volumeChanger
             }
         }
 
+        // Method to process the volume data
         public void ProcessVolumeData(string data)
         {
             SplitData(data);

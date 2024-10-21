@@ -122,7 +122,6 @@
             panelVolWhite1.Name = "panelVolWhite1";
             panelVolWhite1.Size = new Size(25, 150);
             panelVolWhite1.TabIndex = 6;
-            panelVolWhite1.Paint += panelVolWhite1_Paint;
             // 
             // tableLayoutPanel1
             // 
