@@ -29,6 +29,7 @@ namespace volumeChanger
             // Abonnieren des DataReceived-Events und Daten an die Form1 und VolumeController weiterleiten
             serialCommunicator.DataReceived += form.UpdateLabel;
             serialCommunicator.DataReceived += volumeController.ProcessVolumeData;
+            volumeController.PinValueChanged += form.volumeController_OnPinValueChanged;
 
 
             // Starte die serielle Kommunikation in einem separaten Task

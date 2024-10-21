@@ -12,8 +12,17 @@ namespace volumeChanger
         int[] _pinValues = new int[5];
         int[] _previousValues = [0, 0, 0, 0, 0];
 
+        public event EventHandler<PinValueEventArgs> PinValueChanged;
+
         public VolumeController()
         {
+        }
+
+        // Method to raise the event
+        protected virtual void OnPinValueChanged(int pinValue)
+        {
+            PinValueChanged?.Invoke(this, new PinValueEventArgs(pinValue));
+            Console.WriteLine("event raised");
         }
 
         public void SplitData(string data)
@@ -28,14 +37,21 @@ namespace volumeChanger
         public void ProcessVolumeData(string data)
         {
             SplitData(data);
-            Console.WriteLine(_pinValues[4]);
+            Console.WriteLine(_pinValues[0]);
 
             if (_pinValues[0] != _previousValues[0])
             {
                 SetGeneralVolume(_pinValues[0]);
                 _previousValues[0] = _pinValues[0];
+
+                OnPinValueChanged(_pinValues[0]);
             }
 
+        }
+
+        public int[] GetPinValues()
+        {
+            return _pinValues;
         }
 
         public void SetGeneralVolume(int volumeLevel)
@@ -51,5 +67,15 @@ namespace volumeChanger
             var defaultDevice = deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
             defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar = volumeScalar;
         }
+    }
+}
+
+public class PinValueEventArgs : EventArgs
+{
+    public int PinValue { get; }
+
+    public PinValueEventArgs(int pinValue)
+    {
+        PinValue = pinValue;
     }
 }
