@@ -8,6 +8,8 @@ namespace volumeChanger
         private SerialCommunicator _serialCommunicator;
         private CancellationTokenSource _cancellationTokenSource;
 
+        private Form2 form2Instance;
+
         // Konstruktor der Form, erhält den SerialCommunicator und den CancellationTokenSource aus der Main()
         public Form1(SerialCommunicator serialCommunicator, CancellationTokenSource cancellationTokenSource)
         {
@@ -39,6 +41,19 @@ namespace volumeChanger
             System.Threading.Thread.Sleep(500);
 
             base.OnFormClosed(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (form2Instance == null || form2Instance.IsDisposed)
+            {
+                form2Instance = new Form2();
+                form2Instance.Show();
+            }
+            else
+            {
+                form2Instance.BringToFront();
+            }
         }
     }
 }
