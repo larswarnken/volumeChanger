@@ -32,7 +32,7 @@ namespace volumeChanger
         public void volumeController_OnPinValueChanged(object sender, PinValueEventArgs e)
         {
             //volumeMeter1.Amplitude = e.PinValue;
-            UpdatePanelHeight(200-(e.PinValue*2));
+            UpdatePanelHeight(200 - (e.PinValue * 2));
         }
 
         public void UpdatePanelHeight(int newHeight)
@@ -40,12 +40,13 @@ namespace volumeChanger
             if (panelVolWhite.InvokeRequired)
             {
                 // If the current thread is not the UI thread, use Invoke to marshal the call to the UI thread
-                panelVolWhite.Invoke(new Action<int>(UpdatePanelHeight), newHeight);
+                panelVolWhite1.Invoke(new Action<int>(UpdatePanelHeight), newHeight);
             }
             else
             {
                 // Update the height of the panel
-                panelVolWhite.Height = newHeight;
+                panelVolWhite1
+                    .Height = newHeight;
             }
         }
 
@@ -74,7 +75,7 @@ namespace volumeChanger
             base.OnFormClosed(e);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonPrograms_Click(object sender, EventArgs e)
         {
 
             if (form2Instance == null || form2Instance.IsDisposed)
@@ -86,6 +87,11 @@ namespace volumeChanger
             {
                 form2Instance.BringToFront();
             }
+        }
+
+        private void panelVolWhite1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
