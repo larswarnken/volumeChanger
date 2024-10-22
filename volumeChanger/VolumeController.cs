@@ -45,9 +45,9 @@ namespace volumeChanger
         }
 
         // Method to raise the event
-        protected virtual void OnPinValueChanged(int pinValue)
+        protected virtual void OnPinValueChanged(int pinValue, int pin)
         {
-            PinValueChanged?.Invoke(this, new PinValueEventArgs(pinValue));
+            PinValueChanged?.Invoke(this, new PinValueEventArgs(pinValue, pin));
         }
 
         // speichert die einzelnen Werte in dem pin values array
@@ -72,7 +72,7 @@ namespace volumeChanger
                 SetGeneralVolume(_pinValues[0]);
                 _previousValues[0] = _pinValues[0];
 
-                OnPinValueChanged(_pinValues[0]);
+                OnPinValueChanged(_pinValues[0], 0);
             }
 
             // process volume
@@ -80,11 +80,13 @@ namespace volumeChanger
             {
                 if (_pinValues[i] != _previousValues[i])
                 {
-                    foreach (var program in programArray[i - 1])
+                    foreach (var program in programArray[i-1])
                     {
                         SetProcessVolume(program, _pinValues[i]);
 
                         _previousValues[i] = _pinValues[i];
+
+                        OnPinValueChanged(_pinValues[i], i);
                     }
                 }
             }
@@ -143,7 +145,7 @@ namespace volumeChanger
                     {
                         // Setze die Lautstärke (zwischen 0.0 und 1.0)
                         session.SimpleAudioVolume.Volume = volume / 100f;
-                        Console.WriteLine($"Setze Lautstärke für {processName} (PID: {process.Id}) auf {volume}%.");
+                        //Console.WriteLine($"Setze Lautstärke für {processName} (PID: {process.Id}) auf {volume}%.");
                         return;
                     }
                 }
@@ -160,9 +162,11 @@ namespace volumeChanger
 public class PinValueEventArgs : EventArgs
 {
     public int PinValue { get; }
+    public int Pin { get; }
 
-    public PinValueEventArgs(int pinValue)
+    public PinValueEventArgs(int pinValue, int pin)
     {
         PinValue = pinValue;
+        Pin = pin;
     }
 }

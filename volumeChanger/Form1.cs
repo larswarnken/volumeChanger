@@ -16,6 +16,8 @@ namespace volumeChanger
 
         private VolumeController _volumeController;
 
+        Panel[] panelsArray = new Panel[5];
+
         // Konstruktor der Form, erhält den SerialCommunicator und den CancellationTokenSource aus der Main()
         public Form1(SerialCommunicator serialCommunicator, CancellationTokenSource cancellationTokenSource)
         {
@@ -27,28 +29,33 @@ namespace volumeChanger
 
             _serialCommunicator = serialCommunicator;
             _cancellationTokenSource = cancellationTokenSource;
+
+            panelsArray[0] = panelVolWhite1;
+            panelsArray[1] = panelVolWhite2;
+            panelsArray[2] = panelVolWhite3;
+            panelsArray[3] = panelVolWhite4;
+            panelsArray[4] = panelVolWhite5;
         }
 
         // Eventhandler für das PinValueChanged-Event des VolumeControllers
         public void volumeController_OnPinValueChanged(object sender, PinValueEventArgs e)
         {
             //volumeMeter1.Amplitude = e.PinValue;
-            UpdatePanelHeight(200 - (e.PinValue * 2));
+            UpdatePanelHeight(e.Pin ,200 - (e.PinValue * 2));
         }
 
         // update the height of the panel
-        public void UpdatePanelHeight(int newHeight)
+        public void UpdatePanelHeight(int panelNumber, int newHeight)
         {
             if (panelVolWhite.InvokeRequired)
             {
                 // If the current thread is not the UI thread, use Invoke to marshal the call to the UI thread
-                panelVolWhite1.Invoke(new Action<int>(UpdatePanelHeight), newHeight);
+                panelVolWhite.Invoke(new Action(() => UpdatePanelHeight(panelNumber, newHeight)));
             }
             else
             {
                 // Update the height of the panel
-                panelVolWhite1
-                    .Height = newHeight;
+                panelsArray[panelNumber].Height = newHeight;
             }
         }
 
