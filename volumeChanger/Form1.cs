@@ -17,6 +17,7 @@ namespace volumeChanger
         private VolumeController _volumeController;
 
         Panel[] panelsArray = new Panel[5];
+        Label[] volumeLabelArray = new Label[5];
 
         // Konstruktor der Form, erh‰lt den SerialCommunicator und den CancellationTokenSource aus der Main()
         public Form1(SerialCommunicator serialCommunicator, CancellationTokenSource cancellationTokenSource)
@@ -35,6 +36,13 @@ namespace volumeChanger
             panelsArray[2] = panelVolWhite3;
             panelsArray[3] = panelVolWhite4;
             panelsArray[4] = panelVolWhite5;
+
+            volumeLabelArray[0] = labelVol1;
+            volumeLabelArray[1] = labelVol2;
+            volumeLabelArray[2] = labelVol3;
+            volumeLabelArray[3] = labelVol4;
+            volumeLabelArray[4] = labelVol5;
+
         }
 
         // Eventhandler f¸r das PinValueChanged-Event des VolumeControllers
@@ -42,6 +50,7 @@ namespace volumeChanger
         {
             //volumeMeter1.Amplitude = e.PinValue;
             UpdatePanelHeight(e.Pin ,200 - (e.PinValue * 2));
+            UpdateVolumeLabel(e.Pin, e.PinValue);
         }
 
         // update the height of the panel
@@ -59,18 +68,19 @@ namespace volumeChanger
             }
         }
 
-        // Methode zur Verarbeitung der empfangenen Daten
-        public void UpdateLabel(string data)
+        public void UpdateVolumeLabel(int pin, int value)
         {
-            if (label1.InvokeRequired)
+            if (labelVol1.InvokeRequired)
             {
-                label1.Invoke(new Action(() => UpdateLabel(data)));
+                labelVol1.Invoke(new Action(() => UpdateVolumeLabel(pin, value)));
             }
             else
             {
-                label1.Text = data;
+                volumeLabelArray[pin].Text = value.ToString();
             }
         }
+
+        
 
         // Form schlieﬂen und den Thread stoppen
         protected override void OnFormClosed(FormClosedEventArgs e)

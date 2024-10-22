@@ -27,7 +27,6 @@ namespace volumeChanger
             Form1 form = new Form1(serialCommunicator, cancellationTokenSource);
 
             // Abonnieren des DataReceived-Events und Daten an die Form1 und VolumeController weiterleiten
-            serialCommunicator.DataReceived += form.UpdateLabel;
             serialCommunicator.DataReceived += volumeController.ProcessVolumeData;
             volumeController.PinValueChanged += form.volumeController_OnPinValueChanged;
 
