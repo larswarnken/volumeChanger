@@ -122,10 +122,5 @@ namespace volumeChanger
                 form2Instance.BringToFront();
             }
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

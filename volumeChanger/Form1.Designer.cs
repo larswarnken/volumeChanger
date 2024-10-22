@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panelBrd1 = new Panel();
             panelVolWhite = new Panel();
             panelVolBlue1 = new Panel();
@@ -395,16 +396,19 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 14;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // buttonPrograms
             // 
+            buttonPrograms.BackColor = SystemColors.Control;
+            buttonPrograms.FlatStyle = FlatStyle.Flat;
+            buttonPrograms.Font = new Font("Cabin", 9.749999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonPrograms.ForeColor = SystemColors.ControlDark;
             buttonPrograms.Location = new Point(14, 150);
             buttonPrograms.Name = "buttonPrograms";
-            buttonPrograms.Size = new Size(85, 25);
+            buttonPrograms.Size = new Size(85, 30);
             buttonPrograms.TabIndex = 1;
             buttonPrograms.Text = "Programme";
-            buttonPrograms.UseVisualStyleBackColor = true;
+            buttonPrograms.UseVisualStyleBackColor = false;
             buttonPrograms.Click += buttonPrograms_Click;
             // 
             // pictureBoxIcon1
@@ -469,8 +473,9 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Form1";
+            Text = "Lautstärkemixer";
             panelBrd1.ResumeLayout(false);
             panelVolBlue1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
