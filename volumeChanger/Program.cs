@@ -23,12 +23,17 @@ namespace volumeChanger
             // VolumeController erstellen
             VolumeController volumeController = new VolumeController();
 
+            // SwitchController erstellen
+            SwitchController switchController = new SwitchController();
+
             // Form1 erstellen und den SerialCommunicator übergeben
             Form1 form = new Form1(serialCommunicator, cancellationTokenSource);
 
             // Abonnieren des DataReceived-Events und Daten an die Form1 und VolumeController weiterleiten
             serialCommunicator.DataReceived += volumeController.ProcessVolumeData;
+            serialCommunicator.DataReceived += switchController.ProcessSwitchData;
             volumeController.PinValueChanged += form.volumeController_OnPinValueChanged;
+            switchController.SwitchValueChanged += form.switchController_OnSwitchValueChanged;
 
 
             // Starte die serielle Kommunikation in einem separaten Task
@@ -48,13 +53,6 @@ namespace volumeChanger
             // Start der GUI
             Application.Run(form);
         }
-
-        private static void ProcessIncomingData(string data)
-        {
-            Console.WriteLine($"Processing data: {data}");
-            // Hier könntest du den Wert der Potentiometer verarbeiten und die Lautstärke anpassen
-        }
-
         private static void StartSerialCommunication(SerialCommunicator communicator, CancellationToken token)
         {
             communicator.OpenPort();

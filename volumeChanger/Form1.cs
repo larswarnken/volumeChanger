@@ -15,6 +15,7 @@ namespace volumeChanger
         private Form2? form2Instance;
 
         private VolumeController _volumeController;
+        private SwitchController _switchController;
 
         Panel[] panelsArray = new Panel[5];
         Label[] volumeLabelArray = new Label[5];
@@ -26,6 +27,9 @@ namespace volumeChanger
 
             _volumeController = new VolumeController();
             _volumeController.PinValueChanged += volumeController_OnPinValueChanged;
+
+            _switchController = new SwitchController(); 
+            _switchController.SwitchValueChanged += switchController_OnSwitchValueChanged;
 
             _serialCommunicator = serialCommunicator;
             _cancellationTokenSource = cancellationTokenSource;
@@ -44,7 +48,15 @@ namespace volumeChanger
 
             try
             {
-                pictureBox1.Image = Image.FromFile("icons/speaker2.png");
+                if(_switchController.getSwitchValue() == 0 )
+                {
+                    pictureBox1.Image = Image.FromFile("icons/headphones.png");
+                }
+                else if (_switchController.getSwitchValue() == 1)
+                {
+                    pictureBox1.Image = Image.FromFile("icons/speaker2.png");
+                }
+
                 pictureBoxIcon1.Image = Image.FromFile("icons/speakerVolume.png");
                 pictureBoxIcon2.Image = Image.FromFile("icons/brave.png");
                 pictureBoxIcon3.Image = Image.FromFile("icons/spotify.png");
@@ -68,6 +80,34 @@ namespace volumeChanger
             //volumeMeter1.Amplitude = e.PinValue;
             UpdatePanelHeight(e.Pin, 200 - (e.PinValue * 2));
             UpdateVolumeLabel(e.Pin, e.PinValue);
+        }
+
+        public void switchController_OnSwitchValueChanged(object? sender, SwitchValueEventArgs e)
+        {
+            Console.WriteLine("OUTPUT CHANGED LOL");
+            try
+            {
+                if (e.SwitchValue == 0)
+                {
+                    pictureBox1.Image = Image.FromFile("icons/headphones.png");
+                }
+                else if (e.SwitchValue == 1)
+                {
+                    pictureBox1.Image = Image.FromFile("icons/speaker2.png");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid switch value");
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show("Image file not found: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
 
         // update the height of the panel
