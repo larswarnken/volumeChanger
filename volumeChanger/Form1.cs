@@ -44,7 +44,7 @@ namespace volumeChanger
 
             try
             {
-                pictureBox1.Image = Image.FromFile("icons/headphones.png");
+                pictureBox1.Image = Image.FromFile("icons/speaker2.png");
                 pictureBoxIcon1.Image = Image.FromFile("icons/speakerVolume.png");
                 pictureBoxIcon2.Image = Image.FromFile("icons/brave.png");
                 pictureBoxIcon3.Image = Image.FromFile("icons/spotify.png");
