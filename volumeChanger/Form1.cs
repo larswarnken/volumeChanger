@@ -25,6 +25,9 @@ namespace volumeChanger
         {
             InitializeComponent();
 
+            this.Resize += new EventHandler(Form1_Resize);
+            notifyIcon1.MouseDoubleClick += new MouseEventHandler(notifyIcon1_MouseDoubleClick);
+
             _volumeController = new VolumeController();
             _volumeController.PinValueChanged += volumeController_OnPinValueChanged;
 
@@ -74,6 +77,24 @@ namespace volumeChanger
             }
         }
 
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                notifyIcon1.Visible = true;
+                this.ShowInTaskbar = false;
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
+        }
+
+
         // Eventhandler für das PinValueChanged-Event des VolumeControllers
         public void volumeController_OnPinValueChanged(object? sender, PinValueEventArgs e)
         {
@@ -84,7 +105,6 @@ namespace volumeChanger
 
         public void switchController_OnSwitchValueChanged(object? sender, SwitchValueEventArgs e)
         {
-            Console.WriteLine("OUTPUT CHANGED LOL");
             try
             {
                 if (e.SwitchValue == 0)

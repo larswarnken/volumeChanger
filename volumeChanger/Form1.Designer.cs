@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panelBrd1 = new Panel();
             panelVolWhite = new Panel();
@@ -64,6 +65,7 @@
             pictureBoxIcon3 = new PictureBox();
             pictureBoxIcon4 = new PictureBox();
             pictureBoxIcon5 = new PictureBox();
+            notifyIcon1 = new NotifyIcon(components);
             panelBrd1.SuspendLayout();
             panelVolBlue1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -467,6 +469,12 @@
             pictureBoxIcon5.TabIndex = 18;
             pictureBoxIcon5.TabStop = false;
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "Lautstärken";
+            notifyIcon1.Visible = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -538,5 +546,6 @@
         private PictureBox pictureBoxIcon3;
         private PictureBox pictureBoxIcon4;
         private PictureBox pictureBoxIcon5;
+        private NotifyIcon notifyIcon1;
     }
 }
