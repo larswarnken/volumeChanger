@@ -478,6 +478,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Lautstärkemixer";
             panelBrd1.ResumeLayout(false);
             panelVolBlue1.ResumeLayout(false);
