@@ -59,6 +59,9 @@ namespace volumeChanger
 
             // Set focus back to the text box
             lastFocusedTextBox?.Focus();
+
+            // Close the form
+            this.Close();
         }
 
         public void LoadSettings()
