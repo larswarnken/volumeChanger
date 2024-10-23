@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace volumeChanger
 {
@@ -34,14 +35,33 @@ namespace volumeChanger
                 programArray[i] = new List<string>();
             }
 
-            // Füge Werte zu den Listen hinzu
-            programArray[0].Add("brave");
-            programArray[0].Add("chrome");
-            programArray[1].Add("Spotify");
-            programArray[1].Add("spotify");
-            programArray[2].Add("discord");
-            programArray[3].Add("valorant");
+            LoadProgramsFromJson();
+        }
 
+        public void LoadProgramsFromJson()
+        {
+
+            if (File.Exists("settings.json"))
+            {
+                string json = File.ReadAllText("settings.json");
+                var content = JsonConvert.DeserializeObject<dynamic>(json);
+
+
+                for (int i = 0; i < 4; i++)
+                {
+                    string[] programParts = content["Pin" + (i + 1)].ToString().Split('\n');
+                    foreach (var item in programParts)
+                    {
+                        if (item.Trim() != "")
+                            programArray[i].Add(item.Trim());
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Settings file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Method to raise the event
