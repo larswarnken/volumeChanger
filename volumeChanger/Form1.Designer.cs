@@ -474,7 +474,9 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Lautstärkemixer";
             panelBrd1.ResumeLayout(false);

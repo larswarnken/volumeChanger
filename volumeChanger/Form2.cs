@@ -15,6 +15,11 @@ namespace volumeChanger
         public Form2()
         {
             InitializeComponent();
+
+            pictureBoxListIcon1.Image = Image.FromFile("icons/brave.png");
+            pictureBoxListIcon2.Image = Image.FromFile("icons/spotify.png");
+            pictureBoxListIcon3.Image = Image.FromFile("icons/discord.png");
+            pictureBoxListIcon4.Image = Image.FromFile("icons/gaming.png");
         }
     }
 }
