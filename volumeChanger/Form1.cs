@@ -21,10 +21,14 @@ namespace volumeChanger
         Panel[] panelsArray = new Panel[5];
         Label[] volumeLabelArray = new Label[5];
 
+        private bool isFirstTimeOpened = true;
+
         // Konstruktor der Form, erhält den SerialCommunicator und den CancellationTokenSource aus der Main()
         public Form1(SerialCommunicator serialCommunicator, CancellationTokenSource cancellationTokenSource)
         {
             InitializeComponent();
+
+            this.Load += new EventHandler(MainForm_Load);
 
             this.Resize += new EventHandler(Form1_Resize);
             notifyIcon1.MouseDoubleClick += new MouseEventHandler(notifyIcon1_MouseDoubleClick);
@@ -75,6 +79,15 @@ namespace volumeChanger
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (isFirstTimeOpened)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                isFirstTimeOpened = false;
             }
         }
 
