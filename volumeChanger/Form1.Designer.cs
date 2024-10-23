@@ -400,6 +400,7 @@
             // buttonPrograms
             // 
             buttonPrograms.BackColor = SystemColors.Control;
+            buttonPrograms.Cursor = Cursors.Hand;
             buttonPrograms.FlatStyle = FlatStyle.Flat;
             buttonPrograms.Font = new Font("Cabin", 9.749999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonPrograms.ForeColor = SystemColors.ControlDark;
