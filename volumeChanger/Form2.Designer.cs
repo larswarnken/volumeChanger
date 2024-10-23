@@ -122,6 +122,7 @@
             richTextBox3.Name = "richTextBox3";
             richTextBox3.Size = new Size(174, 284);
             richTextBox3.TabIndex = 0;
+            richTextBox3.TabStop = false;
             richTextBox3.Text = "";
             // 
             // panelBorder3
@@ -156,6 +157,7 @@
             richTextBox2.Name = "richTextBox2";
             richTextBox2.Size = new Size(174, 284);
             richTextBox2.TabIndex = 0;
+            richTextBox2.TabStop = false;
             richTextBox2.Text = "";
             // 
             // pictureBoxListIcon1
@@ -226,6 +228,7 @@
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(174, 284);
             richTextBox1.TabIndex = 0;
+            richTextBox1.TabStop = false;
             richTextBox1.Text = "";
             // 
             // panelBorder2
@@ -260,6 +263,7 @@
             richTextBox4.Name = "richTextBox4";
             richTextBox4.Size = new Size(176, 284);
             richTextBox4.TabIndex = 0;
+            richTextBox4.TabStop = false;
             richTextBox4.Text = "";
             // 
             // tableLayoutPanel2
@@ -305,6 +309,7 @@
             MinimizeBox = false;
             Name = "Form2";
             Text = "Programme";
+            Load += Form2_Load;
             tableLayoutPanel1.ResumeLayout(false);
             panelBorder4.ResumeLayout(false);
             panelPadding3.ResumeLayout(false);

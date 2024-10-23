@@ -3,6 +3,7 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using NAudio.CoreAudioApi;
 using NAudio.Gui;
+using static System.Windows.Forms.DataFormats;
 
 namespace volumeChanger
 {
@@ -176,6 +177,7 @@ namespace volumeChanger
             {
                 form2Instance = new Form2();
                 form2Instance.Show();
+                form2Instance.Activate(); // Set focus to Form2
             }
             else
             {

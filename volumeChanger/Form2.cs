@@ -35,7 +35,17 @@ namespace volumeChanger
             settingsManager = new SettingManager();
 
             LoadSettings();
+
+            ActiveControl = null;  //this = form
         }
+
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            // Set focus to the dummy button to remove focus from text boxes
+            ActiveControl = null;  //this = form
+        }
+
 
         private void textBox_Enter(object? sender, EventArgs e)
         {
